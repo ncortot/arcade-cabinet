@@ -34,10 +34,10 @@ extern "C" int main(void)
                     x1 = J_MAX;
                     break;
                   case 2:
-                    y1 = J_MIN;
+                    y1 = J_MAX;
                     break;
                   case 3:
-                    y1 = J_MAX;
+                    y1 = J_MIN;
                     break;
                   case 4:
                     x2 = J_MIN;
@@ -46,10 +46,10 @@ extern "C" int main(void)
                     x2 = J_MAX;
                     break;
                   case 6:
-                    y2 = J_MIN;
+                    y2 = J_MAX;
                     break;
                   case 7:
-                    y2 = J_MAX;
+                    y2 = J_MIN;
                     break;
                 }
             }
