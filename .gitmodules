@@ -1,0 +1,3 @@
+[submodule "display/libraries/SmartMatrix"]
+	path = display/libraries/SmartMatrix
+	url = git@github.com:ncortot/SmartMatrix.git
