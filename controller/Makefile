@@ -27,7 +27,7 @@ BUILDDIR = $(abspath $(CURDIR)/build)
 TOOLSPATH = /usr/share/arduino/hardware/tools
 
 # path location for Teensy 3 core
-COREPATH = /usr/share/arduino/hardware/teensy/cores/teensy3
+COREPATH = $(abspath ../vendor/cores/teensy3)
 
 # path location for Arduino libraries
 LIBRARYPATH = libraries

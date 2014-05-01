@@ -12,7 +12,7 @@ TEENSY_CORE_SPEED = 48000000
 #ARDUINO = 105
 
 # configurable options
-OPTIONS = -DUSB_HID -DLAYOUT_US_ENGLISH
+OPTIONS = -DUSB_SERIAL -DLAYOUT_US_ENGLISH
 
 # directory to build in
 BUILDDIR = $(abspath $(CURDIR)/build)
@@ -27,7 +27,7 @@ BUILDDIR = $(abspath $(CURDIR)/build)
 TOOLSPATH = /usr/share/arduino/hardware/tools
 
 # path location for Teensy 3 core
-COREPATH = /usr/share/arduino/hardware/teensy/cores/teensy3
+COREPATH = $(abspath ../vendor/cores/teensy3)
 
 # path location for Arduino libraries
 LIBRARYPATH = libraries
