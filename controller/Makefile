@@ -24,7 +24,8 @@ BUILDDIR = $(abspath $(CURDIR)/build)
 #************************************************************************
 
 # path location for Teensy Loader, teensy_post_compile and teensy_reboot
-TOOLSPATH = /usr/share/arduino/hardware/tools
+# TOOLSPATH = /usr/share/arduino/hardware/tools
+TOOLSPATH = /Applications/Teensyduino.app/Contents/Resources/Java/hardware/tools
 
 # path location for Teensy 3 core
 COREPATH = $(abspath ../vendor/cores/teensy3)
@@ -32,15 +33,12 @@ COREPATH = $(abspath ../vendor/cores/teensy3)
 # path location for Arduino libraries
 LIBRARYPATH = libraries
 
-# path location for the arm-none-eabi compiler
-COMPILERPATH = /usr/bin
-
 #************************************************************************
 # Settings below this point usually do not need to be edited
 #************************************************************************
 
 # CPPFLAGS = compiler options for C and C++
-CPPFLAGS = -Wall -g -Os -mcpu=cortex-m4 -mthumb -nostdlib -MMD $(OPTIONS) -DF_CPU=$(TEENSY_CORE_SPEED) -Isrc -I$(COREPATH)
+CPPFLAGS = -Wall -g -Os -mcpu=cortex-m4 -mthumb -nostdlib -ffunction-sections -fdata-sections -MMD $(OPTIONS) -DF_CPU=$(TEENSY_CORE_SPEED) -Isrc -I$(COREPATH)
 
 # compiler options for C++ only
 CXXFLAGS = -std=gnu++0x -felide-constructors -fno-exceptions -fno-rtti
@@ -73,10 +71,10 @@ LDFLAGS = -Os -Wl,--gc-sections -mcpu=cortex-m4 -mthumb -T$(LDSCRIPT)
 LIBS = -lm
 
 # names for the compiler programs
-CC = $(abspath $(COMPILERPATH))/arm-none-eabi-gcc
-CXX = $(abspath $(COMPILERPATH))/arm-none-eabi-g++
-OBJCOPY = $(abspath $(COMPILERPATH))/arm-none-eabi-objcopy
-SIZE = $(abspath $(COMPILERPATH))/arm-none-eabi-size
+CC = arm-none-eabi-gcc
+CXX = arm-none-eabi-g++
+OBJCOPY = arm-none-eabi-objcopy
+SIZE = arm-none-eabi-size
 
 # automatically create lists of the sources and objects
 LC_FILES := $(wildcard $(LIBRARYPATH)/*/*.c)
