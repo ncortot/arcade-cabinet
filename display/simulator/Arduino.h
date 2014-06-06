@@ -1,6 +1,7 @@
 #ifndef Arduino_h
 #define Arduino_h
 
+#include <QThread>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -99,6 +100,17 @@ typedef unsigned int word;
 
 typedef uint8_t boolean;
 typedef uint8_t byte;
+
+class DelayHelper : public QThread {
+  public:
+    static void delay(unsigned long millis)
+    {
+        usleep(1000 * millis);
+    }
+};
+
+inline void delay(unsigned long millis) { DelayHelper::delay(millis); };
+
 /*
 void init(void);
 

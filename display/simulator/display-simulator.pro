@@ -12,8 +12,11 @@ TARGET = display-simulator
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        widget.cpp \
+SOURCES  += \
+    main.cpp \
+    program.cpp \
+    widget.cpp \
+    ../src/display.cpp \
     SmartMatrix/CircularBuffer.cpp \
     SmartMatrix/MatrixColor.cpp \
     SmartMatrix/MatrixConfiguration.cpp \
@@ -24,10 +27,13 @@ SOURCES += main.cpp\
     SmartMatrix/Font_apple4x6_256.c \
     SmartMatrix/Font_apple5x7_256.c \
     SmartMatrix/Font_apple6x10.c \
-    SmartMatrix/Font_apple8x13.c \
-    program.cpp
+    SmartMatrix/Font_apple8x13.c
 
-HEADERS  += widget.h \
+HEADERS  += \
+    Arduino.h \
+    program.h \
+    widget.h \
+    ../src/display.h \
     SmartMatrix/CircularBuffer.h \
     SmartMatrix/MatrixFontCommon.h \
     SmartMatrix/MatrixHardware_KitV1_16x32.h \
@@ -35,10 +41,9 @@ HEADERS  += widget.h \
     SmartMatrix/MatrixHardware_KitV1_32x32.h \
     SmartMatrix/SmartMatrix.h \
     SmartMatrix/SmartMatrix_16x32.h \
-    SmartMatrix/SmartMatrix_32x32.h \
-    Arduino.h \
-    program.h
+    SmartMatrix/SmartMatrix_32x32.h
 
 FORMS    += widget.ui
 
 INCLUDEPATH += "SmartMatrix"
+INCLUDEPATH += "../src"

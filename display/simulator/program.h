@@ -10,17 +10,13 @@
 class Program : public QThread
 {
     Q_OBJECT
+
 public:
     explicit Program(QObject *parent = 0);
     SmartMatrix* getMatrix();
-    void begin();
-    void loop();
 
 protected:
     virtual void run();
-    int millis();
-    int random(int max);
-    void delay(int millis);
 
 private:
     SmartMatrix matrix;

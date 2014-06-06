@@ -55,6 +55,10 @@ SmartMatrix::SmartMatrix() {
 
 }
 
+void SmartMatrix::begin()
+{
+}
+
 void SmartMatrix::updateForRead()
 {
     handleBufferSwap();
