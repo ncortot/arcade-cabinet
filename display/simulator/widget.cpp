@@ -22,7 +22,12 @@ Widget::Widget(QWidget *parent) :
     scene = new QGraphicsScene();
     for (int i = 0; i < MATRIX_HEIGHT; i++) {
         for (int j = 0; j < MATRIX_WIDTH; j++) {
-            pixels[i * MATRIX_WIDTH + j] = scene->addRect(j * pixelSize, i * pixelSize, pixelSize, pixelSize, QPen(Qt::NoPen), QBrush(Qt::black));
+            pixels[i * MATRIX_WIDTH + j] = scene->addRect(
+                j * pixelSize, i * pixelSize,
+                pixelSize,
+                pixelSize,
+                QPen(Qt::NoPen),
+                QBrush(Qt::black));
         }
     }
     ui->view->setScene(scene);
