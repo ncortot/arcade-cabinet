@@ -63,7 +63,7 @@ void displayLoop() {
         int xCur = xFirst;
         // limit text to 10 chars, why?
         for (uint8_t i = 0; i < strlen(text); ++i) {
-            int yCur = 5 * sin(xCur * 8 * PI / MATRIX_WIDTH) + 3;
+            int yCur = 4 * sin(xCur * 8 * PI / MATRIX_WIDTH) + 3;
             rgb24 color;
             color.red = startGradient.red + (endGradient.red - startGradient.red)
                 * (xCur + apple6x10.Width) / (MATRIX_WIDTH + apple6x10.Width);
