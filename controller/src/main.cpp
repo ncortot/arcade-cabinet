@@ -5,60 +5,44 @@
 #define J_MIDDLE 512
 #define J_MAX    1023
 
-#define BUTTON_MIN 8  // First button
-#define BUTTON_MAX 34 // Last button + 1
+#define BUTTON_MIN 4  // First button
+#define BUTTON_MAX 24 // Last button + 1
 
 extern "C" int main(void)
 {
     Joystick.useManualSend(true);
 
-    // Configure joystick an button pins as inputs
+    // Configure joystick and button pins as inputs
     for (int i = 0; i < BUTTON_MAX; i++) {
         pinMode(i, INPUT_PULLUP);
     }
 
     while (true) {
-        unsigned int x1 = J_MIDDLE;
-        unsigned int y1 = J_MIDDLE;
-        unsigned int x2 = J_MIDDLE;
-        unsigned int y2 = J_MIDDLE;
+        unsigned int x = J_MIDDLE;
+        unsigned int y = J_MIDDLE;
 
         // Read joystick positions
         for (uint8_t i = 0; i < BUTTON_MIN; ++i) {
             if (!digitalReadFast(i)) {
                 switch (i) {
                   case 0:
-                    x1 = J_MIN;
+                    x = J_MIN;
                     break;
                   case 1:
-                    x1 = J_MAX;
+                    x = J_MAX;
                     break;
                   case 2:
-                    y1 = J_MAX;
+                    y = J_MAX;
                     break;
                   case 3:
-                    y1 = J_MIN;
-                    break;
-                  case 4:
-                    x2 = J_MIN;
-                    break;
-                  case 5:
-                    x2 = J_MAX;
-                    break;
-                  case 6:
-                    y2 = J_MAX;
-                    break;
-                  case 7:
-                    y2 = J_MIN;
+                    y = J_MIN;
                     break;
                 }
             }
         }
 
-        Joystick.X(x1);
-        Joystick.Y(y1);
-        Joystick.Z(x2);
-        Joystick.Zrotate(y2);
+        Joystick.X(x);
+        Joystick.Y(y);
 
         // Read button states
         for (uint8_t i = BUTTON_MIN; i < BUTTON_MAX; ++i) {
