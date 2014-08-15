@@ -18,36 +18,10 @@ extern "C" int main(void)
     }
 
     while (true) {
-        unsigned int x = J_MIDDLE;
-        unsigned int y = J_MIDDLE;
-
-        // Read joystick positions
-        for (uint8_t i = 0; i < BUTTON_MIN; ++i) {
-            if (!digitalReadFast(i)) {
-                switch (i) {
-                  case 0:
-                    x = J_MIN;
-                    break;
-                  case 1:
-                    x = J_MAX;
-                    break;
-                  case 2:
-                    y = J_MAX;
-                    break;
-                  case 3:
-                    y = J_MIN;
-                    break;
-                }
-            }
-        }
-
-        Joystick.X(x);
-        Joystick.Y(y);
-
         // Read button states
-        for (uint8_t i = BUTTON_MIN; i < BUTTON_MAX; ++i) {
+        for (uint8_t i = 0; i < BUTTON_MAX; ++i) {
             bool state = !digitalReadFast(i);
-            Joystick.button(i - BUTTON_MIN + 1, state);
+            Joystick.button(i + 1, state);
         }
 
         // Send new state
