@@ -12,7 +12,7 @@ TEENSY_CORE_SPEED = 48000000
 #ARDUINO = 105
 
 # configurable options
-OPTIONS = -DUSB_HID -DLAYOUT_US_ENGLISH
+OPTIONS = -DUSB_XINPUT -DLAYOUT_US_ENGLISH
 
 # directory to build in
 BUILDDIR = $(abspath $(CURDIR)/build)
@@ -25,7 +25,7 @@ BUILDDIR = $(abspath $(CURDIR)/build)
 
 # path location for Teensy Loader, teensy_post_compile and teensy_reboot
 # TOOLSPATH = /usr/share/arduino/hardware/tools
-TOOLSPATH = /Applications/Teensyduino.app/Contents/Resources/Java/hardware/tools
+TOOLSPATH = /Applications/Teensyduino.app/Contents/Java/hardware/tools
 
 # path location for Teensy 3 core
 COREPATH = $(abspath ../vendor/cores/teensy3)
@@ -109,33 +109,28 @@ upload-cli: $(TARGET).hex
 	teensy-loader-cli -mmcu=mk20dx128 -v -w "$<"
 
 $(BUILDDIR)/%.o: %.c
-	@echo -e "[CC]\t$<"
 	@mkdir -p "$(dir $@)"
-	@$(CC) $(CPPFLAGS) $(CFLAGS) $(L_INC) -o "$@" -c "$<"
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(L_INC) -o "$@" -c "$<"
 
 $(BUILDDIR)/%.o: %.cpp
-	@echo -e "[CXX]\t$<"
 	@mkdir -p "$(dir $@)"
-	@$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(L_INC) -o "$@" -c "$<"
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(L_INC) -o "$@" -c "$<"
 
 $(BUILDDIR)/%.o: %.ino
-	@echo -e "[CXX]\t$<"
 	@mkdir -p "$(dir $@)"
-	@$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(L_INC) -o "$@" -x c++ -include Arduino.h -c "$<"
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(L_INC) -o "$@" -x c++ -include Arduino.h -c "$<"
 
 $(TARGET).elf: $(OBJS) $(LDSCRIPT)
-	@echo -e "[LD]\t$@"
-	@$(CC) $(LDFLAGS) -o "$@" $(OBJS) $(LIBS)
+	$(CC) $(LDFLAGS) -o "$@" $(OBJS) $(LIBS)
 
 %.hex: %.elf
-	@echo -e "[HEX]\t$@"
-	@$(SIZE) "$<"
-	@$(OBJCOPY) -O ihex -R .eeprom "$<" "$@"
+	$(SIZE) "$<"
+	$(OBJCOPY) -O ihex -R .eeprom "$<" "$@"
 
 # compiler generated dependency info
 -include $(OBJS:.o=.d)
 
 clean:
 	@echo Cleaning...
-	@rm -rf "$(BUILDDIR)"
-	@rm -f "$(TARGET).elf" "$(TARGET).hex"
+	rm -rf "$(BUILDDIR)"
+	rm -f "$(TARGET).elf" "$(TARGET).hex"

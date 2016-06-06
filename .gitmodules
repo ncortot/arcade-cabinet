@@ -4,3 +4,6 @@
 [submodule "vendor/cores"]
 	path = vendor/cores
 	url = git@github.com:ncortot/cores.git
+[submodule "vendor/MSF-XINPUT"]
+	path = vendor/MSF-XINPUT
+	url = git@github.com:ncortot/MSF-XINPUT.git
